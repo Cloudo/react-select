@@ -729,7 +729,7 @@ var Select = React.createClass({
 			};
 			options.unshift(newOption);
 		}
-		var ops = Object.keys(options).map(function(key) {
+		var ops = Object.keys(options).map(function(key, i) {
 			var op = options[key];
 			var isSelected = this.state.value === op[this.props.valueKey];
 			var isFocused = focusedValue === op[this.props.valueKey];
@@ -741,7 +741,7 @@ var Select = React.createClass({
 			});
 			var ref = isFocused ? 'focused' : null;
 			var optionResult = React.createElement(this.props.optionComponent, {
-				key: 'option-' + op[this.props.valueKey],
+				key: 'option-' + i + '-' + op[this.props.valueKey],
 				className: optionClass,
 				renderFunc: renderLabel,
 				mouseDown: this.selectValue,

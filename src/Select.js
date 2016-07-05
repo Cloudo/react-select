@@ -875,7 +875,7 @@ var Select = React.createClass({
 		var input;
 		var inputProps = {
 			ref: 'input',
-			className: 'Select-input ' + (this.props.inputProps.className || ''),
+			className: 'Select-input ' + (this.props.inputProps.className || '') + (this.props.autosize ? 'autosize' : ''),
 			tabIndex: this.props.tabIndex || 0,
 			onFocus: this.handleInputFocus,
 			onBlur: this.handleInputBlur

@@ -21,6 +21,7 @@ var Select = React.createClass({
 		allowCreate: React.PropTypes.bool,         // whether to allow creation of new entries
 		asyncOptions: React.PropTypes.func,        // function to call to get options
 		autoload: React.PropTypes.bool,            // whether to auto-load the default async options set
+		autosize: React.PropTypes.bool,						 // whether to enable autosizing or not
 		backspaceRemoves: React.PropTypes.bool,    // whether backspace removes an item if there is no text input
 		cacheAsyncResults: React.PropTypes.bool,   // whether to allow cache
 		className: React.PropTypes.string,         // className for the outer element
@@ -66,6 +67,7 @@ var Select = React.createClass({
 			allowCreate: false,
 			asyncOptions: undefined,
 			autoload: true,
+			autosize: false,
 			backspaceRemoves: true,
 			cacheAsyncResults: true,
 			className: undefined,
@@ -886,7 +888,11 @@ var Select = React.createClass({
 
 		if (!this.props.disabled) {
 			if (this.props.searchable) {
-				input = <Input value={this.state.inputValue} onChange={this.handleInputChange} minWidth="5" {...inputProps} />;
+				if (this.props.autosize) {
+					input = <Input value={this.state.inputValue} onChange={this.handleInputChange} minWidth="5" {...inputProps} />;
+				} else {
+					input = <input value={this.state.inputValue} onChange={this.handleInputChange} {...inputProps} />;
+				}
 			} else {
 				input = <div {...inputProps}>&nbsp;</div>;
 			}
